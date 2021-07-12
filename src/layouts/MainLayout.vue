@@ -3,7 +3,15 @@
     <q-header bordered class="bg-white text-black">
       <q-toolbar>
         <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
-        <q-toolbar-title class="text-weight-bold">Tvvitter</q-toolbar-title>
+        <q-toolbar-title class="text-weight-bold">
+          <span class="gt-sm">Tvvitter</span>
+          <q-icon
+            class="header-icon lt-md q-pa-md"
+            name="fas fa-dove"
+            size="sm"
+            color="primary"
+          />
+        </q-toolbar-title>
       </q-toolbar>
     </q-header>
 
@@ -117,3 +125,11 @@ export default {
   },
 };
 </script>
+
+<style lang="sass">
+.header-icon
+  position: absolute
+  bottom: 0
+  left: 50%
+  transform: translateX(-50%)
+</style>
