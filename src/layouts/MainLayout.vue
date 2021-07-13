@@ -4,7 +4,7 @@
       <q-toolbar>
         <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
         <q-toolbar-title class="text-weight-bold">
-          <span class="gt-sm">Tvvitter</span>
+          <span class="gt-sm">{{ $route.name }}</span>
           <q-icon
             class="header-icon lt-md q-pa-md"
             name="fas fa-dove"
