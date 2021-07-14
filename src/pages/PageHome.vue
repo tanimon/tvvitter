@@ -32,8 +32,13 @@
 
     <q-separator class="divider" color="grey-1" size="10px" />
 
-    <q-list class="q-py-md">
-      <q-item clickable>
+    <q-list separator>
+      <q-item
+        v-for="tvveet in tvveets"
+        :key="tvveet.id"
+        clickable
+        class="q-py-md"
+      >
         <q-item-section avatar top>
           <q-avatar size="xl">
             <img src="https://avatars.githubusercontent.com/u/8575113?v=4" />
@@ -42,14 +47,13 @@
 
         <q-item-section>
           <q-item-label class="text-subtitle1">
-            <strong>たにモン</strong>
-            <span class="text-grey-7"> @tanimon_dev ・1 min ago </span>
+            <strong>{{ tvveet.displayName }}</strong>
+            <span class="text-grey-7">
+              @{{ tvveet.username }}・{{ relativeDate(tvveet.date) }}
+            </span>
           </q-item-label>
           <q-item-label class="tvveet-content text-body1">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis
-            repellat voluptatem ratione provident, porro necessitatibus
-            perferendis ullam minima exercitationem pariatur dolorem sint hic
-            placeat unde! Ipsam ut possimus magnam rem.
+            {{ tvveet.content }}
           </q-item-label>
           <div class="tvveet-icons row justify-between">
             <q-btn flat round size="sm" color="grey" icon="far fa-comment" />
@@ -66,12 +70,39 @@
 </template>
 
 <script lang="ts">
+import { formatDistanceToNow } from 'date-fns';
+
 export default {
   name: 'PageHome',
   data() {
     return {
       newTvveetContent: '',
+      tvveets: [
+        {
+          id: 0,
+          displayName: 'たにモン',
+          username: 'tanimon_dev',
+          avatarImgSrc: 'https://avatars.githubusercontent.com/u/8575113?v=4',
+          content:
+            'Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis repellat voluptatem ratione provident, porro necessitatibus perferendis ullam minima exercitationem pariatur dolorem sint hic placeat unde! Ipsam ut possimus magnam rem.',
+          date: 1626247095658,
+        },
+        {
+          id: 1,
+          displayName: 'たにモン',
+          username: 'tanimon_dev',
+          avatarImgSrc: 'https://avatars.githubusercontent.com/u/8575113?v=4',
+          content:
+            ' Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis repellat voluptatem ratione provident, porro necessitatibus perferendis ullam minima exercitationem pariatur dolorem sint hic placeat unde! Ipsam ut possimus magnam rem.',
+          date: 1626247095758,
+        },
+      ],
     };
+  },
+  methods: {
+    relativeDate(time: number): string {
+      return formatDistanceToNow(time);
+    },
   },
 };
 </script>
