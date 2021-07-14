@@ -29,6 +29,8 @@
         />
       </div>
     </div>
+
+    <q-separator class="divider" color="grey-1" size="10px" />
   </q-page>
 </template>
 
@@ -48,4 +50,8 @@ export default {
   textarea
     font-size: 19px
     line-height: 1.4 !important
+.divider
+  border-top: 1px solid
+  border-bottom: 1px solid
+  border-color: $grey-3
 </style>
