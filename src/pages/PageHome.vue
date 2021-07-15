@@ -70,11 +70,26 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from 'vue';
 import { formatDistanceToNow } from 'date-fns';
 
-export default {
+type Tvveet = {
+  id: number;
+  displayName: string;
+  username: string;
+  avatarImgSrc: string;
+  content: string;
+  date: number;
+};
+
+type Data = {
+  newTvveetContent: string;
+  tvveets: Tvveet[];
+};
+
+export default defineComponent({
   name: 'PageHome',
-  data() {
+  data(): Data {
     return {
       newTvveetContent: '',
       tvveets: [
@@ -104,7 +119,7 @@ export default {
       return formatDistanceToNow(time);
     },
   },
-};
+});
 </script>
 
 <style lang="sass">
