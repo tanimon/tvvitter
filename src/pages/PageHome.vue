@@ -20,6 +20,7 @@
       </div>
       <div class="col col-shrink q-mb-lg">
         <q-btn
+          @click="addNewTvveet"
           :disable="!newTvveetContent"
           unelevated
           rounded
@@ -115,6 +116,18 @@ export default defineComponent({
     };
   },
   methods: {
+    addNewTvveet() {
+      const newTvveet: Tvveet = {
+        id: Math.random(),
+        displayName: 'たにモン',
+        username: 'tanimon_dev',
+        avatarImgSrc: 'https://avatars.githubusercontent.com/u/8575113?v=4',
+        content: this.newTvveetContent,
+        date: Date.now(),
+      };
+      this.tvveets.unshift(newTvveet);
+    },
+
     relativeDate(time: number): string {
       return formatDistanceToNow(time);
     },
