@@ -60,7 +60,14 @@
             <q-btn flat round size="sm" color="grey" icon="far fa-comment" />
             <q-btn flat round size="sm" color="grey" icon="fas fa-retweet" />
             <q-btn flat round size="sm" color="grey" icon="far fa-heart" />
-            <q-btn flat round size="sm" color="grey" icon="fas fa-trash" />
+            <q-btn
+              @click="deleteTvveet(tvveet)"
+              flat
+              round
+              size="sm"
+              color="grey"
+              icon="fas fa-trash"
+            />
           </div>
         </q-item-section>
       </q-item>
@@ -126,6 +133,12 @@ export default defineComponent({
         date: Date.now(),
       };
       this.tvveets.unshift(newTvveet);
+    },
+
+    deleteTvveet(tvveetToDelete: Tvveet): void {
+      this.tvveets = this.tvveets
+        .slice()
+        .filter((item) => item.id !== tvveetToDelete.id);
     },
 
     relativeDate(time: number): string {
