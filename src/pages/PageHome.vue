@@ -20,6 +20,7 @@
       </div>
       <div class="col col-shrink q-mb-lg">
         <q-btn
+          @click="addNewTvveet"
           :disable="!newTvveetContent"
           unelevated
           rounded
@@ -59,7 +60,14 @@
             <q-btn flat round size="sm" color="grey" icon="far fa-comment" />
             <q-btn flat round size="sm" color="grey" icon="fas fa-retweet" />
             <q-btn flat round size="sm" color="grey" icon="far fa-heart" />
-            <q-btn flat round size="sm" color="grey" icon="fas fa-trash" />
+            <q-btn
+              @click="deleteTvveet(tvveet)"
+              flat
+              round
+              size="sm"
+              color="grey"
+              icon="fas fa-trash"
+            />
           </div>
         </q-item-section>
       </q-item>
@@ -70,11 +78,26 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from 'vue';
 import { formatDistanceToNow } from 'date-fns';
 
-export default {
+type Tvveet = {
+  id: number;
+  displayName: string;
+  username: string;
+  avatarImgSrc: string;
+  content: string;
+  date: number;
+};
+
+type Data = {
+  newTvveetContent: string;
+  tvveets: Tvveet[];
+};
+
+export default defineComponent({
   name: 'PageHome',
-  data() {
+  data(): Data {
     return {
       newTvveetContent: '',
       tvveets: [
@@ -100,11 +123,29 @@ export default {
     };
   },
   methods: {
+    addNewTvveet() {
+      const newTvveet: Tvveet = {
+        id: Math.random(),
+        displayName: 'たにモン',
+        username: 'tanimon_dev',
+        avatarImgSrc: 'https://avatars.githubusercontent.com/u/8575113?v=4',
+        content: this.newTvveetContent,
+        date: Date.now(),
+      };
+      this.tvveets.unshift(newTvveet);
+    },
+
+    deleteTvveet(tvveetToDelete: Tvveet): void {
+      this.tvveets = this.tvveets
+        .slice()
+        .filter((item) => item.id !== tvveetToDelete.id);
+    },
+
     relativeDate(time: number): string {
       return formatDistanceToNow(time);
     },
   },
-};
+});
 </script>
 
 <style lang="sass">
