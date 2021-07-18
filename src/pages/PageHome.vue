@@ -55,7 +55,7 @@
             <q-item-label class="text-subtitle1">
               <strong>{{ tvveet.displayName }}</strong>
               <span class="text-grey-7">
-                @{{ tvveet.username }}・{{ relativeDate(tvveet.date) }}
+                @{{ tvveet.username }} &bull; {{ relativeDate(tvveet.date) }}
               </span>
             </q-item-label>
             <q-item-label class="tvveet-content text-body1">
