@@ -34,45 +34,51 @@
     <q-separator class="divider" color="grey-1" size="10px" />
 
     <q-list separator>
-      <q-item
-        v-for="tvveet in tvveets"
-        :key="tvveet.id"
-        clickable
-        class="q-py-md"
+      <transition-group
+        appear
+        enter-active-class="animated fadeIn slow"
+        leave-active-class="animated fadeOut slow"
       >
-        <q-item-section avatar top>
-          <q-avatar size="xl">
-            <img src="https://avatars.githubusercontent.com/u/8575113?v=4" />
-          </q-avatar>
-        </q-item-section>
+        <q-item
+          v-for="tvveet in tvveets"
+          :key="tvveet.id"
+          clickable
+          class="q-py-md"
+        >
+          <q-item-section avatar top>
+            <q-avatar size="xl">
+              <img src="https://avatars.githubusercontent.com/u/8575113?v=4" />
+            </q-avatar>
+          </q-item-section>
 
-        <q-item-section>
-          <q-item-label class="text-subtitle1">
-            <strong>{{ tvveet.displayName }}</strong>
-            <span class="text-grey-7">
-              @{{ tvveet.username }}・{{ relativeDate(tvveet.date) }}
-            </span>
-          </q-item-label>
-          <q-item-label class="tvveet-content text-body1">
-            {{ tvveet.content }}
-          </q-item-label>
-          <div class="tvveet-icons row justify-between">
-            <q-btn flat round size="sm" color="grey" icon="far fa-comment" />
-            <q-btn flat round size="sm" color="grey" icon="fas fa-retweet" />
-            <q-btn flat round size="sm" color="grey" icon="far fa-heart" />
-            <q-btn
-              @click="deleteTvveet(tvveet)"
-              flat
-              round
-              size="sm"
-              color="grey"
-              icon="fas fa-trash"
-            />
-          </div>
-        </q-item-section>
-      </q-item>
+          <q-item-section>
+            <q-item-label class="text-subtitle1">
+              <strong>{{ tvveet.displayName }}</strong>
+              <span class="text-grey-7">
+                @{{ tvveet.username }}・{{ relativeDate(tvveet.date) }}
+              </span>
+            </q-item-label>
+            <q-item-label class="tvveet-content text-body1">
+              {{ tvveet.content }}
+            </q-item-label>
+            <div class="tvveet-icons row justify-between">
+              <q-btn flat round size="sm" color="grey" icon="far fa-comment" />
+              <q-btn flat round size="sm" color="grey" icon="fas fa-retweet" />
+              <q-btn flat round size="sm" color="grey" icon="far fa-heart" />
+              <q-btn
+                @click="deleteTvveet(tvveet)"
+                flat
+                round
+                size="sm"
+                color="grey"
+                icon="fas fa-trash"
+              />
+            </div>
+          </q-item-section>
+        </q-item>
 
-      <q-separator />
+        <q-separator />
+      </transition-group>
     </q-list>
   </q-page>
 </template>
