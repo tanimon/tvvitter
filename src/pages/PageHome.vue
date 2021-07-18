@@ -157,6 +157,7 @@ export default defineComponent({
         date: Date.now(),
       };
       this.tvveets.unshift(newTvveet);
+      this.newTvveetContent = '';
     },
 
     deleteTvveet(tvveetToDelete: Tvveet): void {
